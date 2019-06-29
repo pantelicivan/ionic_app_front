@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: MainScreenPage,
-    children: [{ path: 'my-cart', loadChildren: '../my-cart/my-cart.module#MyCartPageModule' },
+    children: [{ path: 'splash-screen', loadChildren: '../splash-screen/splash-screen.module#SplashScreenPageModule' },
     { path: 'my-profile', loadChildren: '../my-profile/my-profile.module#MyProfilePageModule' },
     { path: 'add-ad', loadChildren: '../add-ad/add-ad.module#AddAdPageModule' }
     ]
