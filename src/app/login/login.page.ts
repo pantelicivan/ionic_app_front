@@ -33,7 +33,11 @@ export class LoginPage implements OnInit {
     }).subscribe(response => {
       this.showAlert("Success!", response['message'])
     }, error => {
-      this.showAlert("Error!", error['error'].message)
+      if(error.status == 422) {
+        this.showAlert("Error!", Object.values(error['error'])[0][0])
+      } else {
+        this.showAlert("Error!", error['error'].message)
+      }
     });
   }
 

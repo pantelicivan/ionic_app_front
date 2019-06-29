@@ -34,7 +34,7 @@ export class RegisterPage implements OnInit {
     }).subscribe(response => {
       this.showAlert("Success!", response['message'])
     }, error => {
-      this.showAlert("Error!", error.message)
+      this.showAlert("Error!", Object.values(error['error'])[0][0])
     });
   }
 
