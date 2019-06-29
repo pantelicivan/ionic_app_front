@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AlertController } from '@ionic/angular'
-import { Router } from '@angular/router';
+import { AlertManager } from '../helpers/alert';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +12,7 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   constructor(
     private http: HttpClient,
-    private alert: AlertController,
-    private router: Router
+    private alertManager: AlertManager
     ) { }
 
   email: string = ""
@@ -31,32 +29,14 @@ export class LoginPage implements OnInit {
       email: email,
       password: password,
     }).subscribe(response => {
-      this.showAlert("Success!", response['message'])
+      localStorage.setItem('token', response['0'].access_token);
+      this.alertManager.showAlert("Success!", response['message'], 'tabs')
     }, error => {
       if(error.status == 422) {
-        this.showAlert("Error!", Object.values(error['error'])[0][0])
+        this.alertManager.showAlert("Error!", Object.values(error['error'])[0][0], "")
       } else {
-        this.showAlert("Error!", error['error'].message)
+        this.alertManager.showAlert("Error!", error['error'].message, "")
       }
     });
-  }
-
-  async showAlert(header: string, message: string) {
-    const alert =  await this.alert.create({
-      header,
-      message,
-      buttons: [{
-        text: "Ok",
-        handler: () => {
-          alert.dismiss();
-          if(header == "Success!") {
-            //Idemo dalje na main screen
-            this.router.navigate(['/tabs']);
-          }
-        }
-      }]
-    });
-
-    await alert.present()
   }
 }

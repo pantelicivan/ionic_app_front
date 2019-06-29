@@ -12,21 +12,18 @@
   <ion-list>
     <ion-item>
       <ion-label position="floating">Name</ion-label>
-      <ion-input type="text" [(ngModel)]="name"></ion-input>
+      <ion-input type="text" [(ngModel)]="name" disabled></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">E-mail</ion-label>
-      <ion-input type="email" [(ngModel)]="email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
+      <ion-input type="email" [(ngModel)]="email" disabled></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Mobile phone</ion-label>
-      <ion-input type="text" [(ngModel)]="mobile_phone"></ion-input>
+      <ion-input type="text" [(ngModel)]="mobile_phone" disabled></ion-input>
     </ion-item>
   </ion-list>
   <ion-button expand="block" href="order-history">Order history</ion-button>
   <ion-button expand="block" href="my-cart">My cart</ion-button>
+  <ion-button expand="block" (click)="logout()">Logout</ion-button>
 </ion-content>
