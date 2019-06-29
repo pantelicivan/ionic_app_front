@@ -1,9 +1,40 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Add</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/splash-screen"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add ad</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input type="text" [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-input type="text" [(ngModel)]="description"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Price</ion-label>
+      <ion-input type="text" [(ngModel)]="price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Quantity</ion-label>
+      <ion-input type="text" [(ngModel)]="quantity"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div>
+    <input type="file" name="uploadfile" id="img" style="display:none;" (change)="fileChanged($event)" />
+    <label for="img">Click me to upload image</label>
+  </div>
+
+
+  <!-- <div class="camera"><input  (change)="fileChanged($event)" />Add photo </div> -->
+  <!-- <img *ngIf="imageURL" src="http://ucarecdn.com/{{imageURL}}/" alt=""> -->
+
+  <ion-button expand="block" (click)="create()">Create</ion-button>
 </ion-content>

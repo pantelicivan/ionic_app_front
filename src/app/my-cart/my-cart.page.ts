@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-my-cart',
   templateUrl: './my-cart.page.html',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyCartPage implements OnInit {
 
-  constructor() { }
+
 
   ngOnInit() {
   }
+  
 
 }
