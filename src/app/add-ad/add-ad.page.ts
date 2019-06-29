@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { AlertController } from '@ionic/angular'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { AlertManager } from '../helpers/alert';
 
 @Component({
   selector: 'app-add-ad',
@@ -13,9 +13,10 @@ export class AddAdPage implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private alert: AlertController
+    private alertManager: AlertManager
   ) { }
 
+  httpOptions
   title: string = ""
   description: string = ""
   price: number
@@ -23,20 +24,26 @@ export class AddAdPage implements OnInit {
   imageURL: string
 
   ngOnInit() {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    };
   }
 
   create() {
     const { title, description, price, quantity } = this
 
-    this.http.post("http://mobilno.develop/api/v1/register", {
+    this.http.post("http://mobilno.develop/api/v1/ad", {
       title: title,
       description: description,
       price: price,
       quantity: quantity
-    }).subscribe(response => {
-      // this.showAlert("Success!", response['message'])
+    }, this.httpOptions).subscribe(response => {
+      this.alertManager.showAlert("Success!", response['message'], 'tabs/splash-screen')
     }, error => {
-      // this.showAlert("Error!", Object.values(error['error'])[0][0])
+      this.alertManager.showAlert("Error!", error['error'].message, "")
     });
   }
 

@@ -39,7 +39,6 @@ export class MyProfilePage implements OnInit {
 
   logout() {
     this.http.post("http://mobilno.develop/api/v1/logout",null, this.httpOptions).subscribe( response => {
-      console.log(response);
       this.alertManager.showAlert("Success!", response['message'], 'home')
     }, error => {
       console.log(error);
