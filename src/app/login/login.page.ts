@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
           alert.dismiss();
           if(header == "Success!") {
             //Idemo dalje na main screen
-            this.router.navigate(['/login']);
+            this.router.navigate(['/tabs']);
           }
         }
       }]
