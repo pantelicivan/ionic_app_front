@@ -7,7 +7,21 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-  <ion-button expand="block" href="finish-order">Order</ion-button>
+<ion-content *ngIf="order_items">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <ion-card *ngFor="let order_item of order_items">
+                  <ion-card-header>
+                      <ion-card-title color="primary">{{order_item.title}}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-text color="dark">Quantity: {{order_item.quantity}} | Total price: <b>{{order_item.quantity * order_item.price}}</b></ion-text>
+                    <ion-button id="{{order_item.id}}" fill="clear" color="primary" (click)="destroy($event)">X</ion-button>
+                  </ion-card-content>
+                  </ion-card>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+      <ion-button expand="block" href="finish-order">Order</ion-button>
 </ion-content>

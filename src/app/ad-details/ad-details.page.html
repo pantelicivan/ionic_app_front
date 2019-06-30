@@ -20,7 +20,7 @@
                   <ion-card-subtitle>Advertiser: {{ad[0].user}}</ion-card-subtitle>
                   <ion-text>{{ad[0].description}}</ion-text>
                   <p>Posted on: {{ad[0].created_at * 1000 | date:'dd-MM-yyyy'}}</p>
-                  <p style="text-decoration: line-through;">On stock: {{ad[0].quantity}}</p>
+                  <p>On stock: {{ad[0].quantity}}</p>
                   <ion-text *ngIf="ad[0].quantity>0" color="primary"><b>Price: </b>{{ad[0].price}} $</ion-text>
                   <ion-text *ngIf="ad[0].quantity==0" color="danger"><b>Price: </b>{{ad[0].price}} $</ion-text>
               </ion-card-content>
