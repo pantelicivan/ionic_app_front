@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertManager } from '../helpers/alert';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-finish-order',
@@ -12,8 +11,7 @@ export class FinishOrderPage implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private alertManager: AlertManager,
-    private router: Router
+    private alertManager: AlertManager
   ) { }
 
   httpOptions;

@@ -16,12 +16,13 @@
                       <ion-card-title color="primary">{{order_item.title}}</ion-card-title>
                   </ion-card-header>
                   <ion-card-content>
-                    <ion-text color="dark">Quantity: {{order_item.quantity}} | Total price: <b>{{order_item.quantity * order_item.price}}</b></ion-text>
+                    <ion-text color="dark">Quantity: {{order_item.quantity}} | Total price: <b>{{order_item.quantity * order_item.price}} $</b></ion-text>
                     <ion-button id="{{order_item.id}}" fill="clear" color="primary" (click)="destroy($event)">X</ion-button>
                   </ion-card-content>
                   </ion-card>
             </ion-col>
           </ion-row>
       </ion-grid>
-      <ion-button expand="block" (click)="finish_order()">Order</ion-button>
+      <ion-button *ngIf="order_items[0] != null" expand="block" (click)="finish_order()">Order</ion-button>
+      <ion-button *ngIf="order_items[0] == null " expand="block" (click)="finish_order()" disabled>Add some order items!</ion-button>
 </ion-content>
