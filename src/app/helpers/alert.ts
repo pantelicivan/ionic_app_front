@@ -18,8 +18,7 @@ export class AlertManager {
             text: "Ok",
             handler: () => {
               alert.dismiss();
-              if(header == "Success!") {
-                //Idemo dalje na main screen
+              if(redirect != "") {
                 this.router.navigate(['/' + redirect]);
               }
             }

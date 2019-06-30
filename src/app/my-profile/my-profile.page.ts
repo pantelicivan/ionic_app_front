@@ -33,7 +33,7 @@ export class MyProfilePage implements OnInit {
       this.email = response['user'].email
       this.mobile_phone = response['user'].mobile_phone
     }, error => {
-      console.log(error);
+      this.alertManager.showAlert("Error!", error.statusText, "")
     })
   }
 
@@ -41,7 +41,7 @@ export class MyProfilePage implements OnInit {
     this.http.post("http://mobilno.develop/api/v1/logout",null, this.httpOptions).subscribe( response => {
       this.alertManager.showAlert("Success!", response['message'], 'home')
     }, error => {
-      console.log(error);
+      this.alertManager.showAlert("Error!", error.statusText, "")
     })
   }
 }

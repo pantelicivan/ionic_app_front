@@ -43,7 +43,12 @@ export class AddAdPage implements OnInit {
     }, this.httpOptions).subscribe(response => {
       this.alertManager.showAlert("Success!", response['message'], 'tabs/splash-screen')
     }, error => {
-      this.alertManager.showAlert("Error!", error['error'].message, "")
+      console.log(error);
+      if(error.status == 401) {
+        this.alertManager.showAlert("Error!", error.statusText, "login")
+      } else {
+        this.alertManager.showAlert("Error!", Object.values(error['error'])[0][0], "")
+      }
     });
   }
 
