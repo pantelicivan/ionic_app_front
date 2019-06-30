@@ -15,10 +15,10 @@
           </ion-card-header>
           <ion-img *ngIf="ad.img_url" src="http://ucarecdn.com/{{ad.img_url}}/" width="80" height="80"></ion-img>
           <ion-card-content>
-            <p>{{ad.created_at * 1000 | date:'dd-MM-yyyy'}}</p>
+            <p>Posted on: {{ad.created_at * 1000 | date:'dd-MM-yyyy'}}</p>
           </ion-card-content>
           <div>
-            <ion-button fill="clear" color="primary">More</ion-button>
+            <ion-button id="{{ad.id}}" fill="clear" color="primary" (click)="details($event)">More</ion-button>
           </div>
         </ion-card>
       </ion-col>

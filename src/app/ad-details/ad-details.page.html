@@ -1,9 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ad-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/splash-screen"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="ad">{{ad[0].title}}'s details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="ad">
+    <ion-grid>
+        <ion-row>
+          <ion-col size="12" text-center>
+            <ion-card>
+              <ion-card-header>
+                <ion-img *ngIf="ad[0].img_url" src="http://ucarecdn.com/{{ad[0].img_url}}/" width="80" height="80"></ion-img>
+              </ion-card-header>
+              <ion-card-content>
+                  <ion-card-title>{{ad[0].title}}</ion-card-title>
+                  <ion-card-subtitle>Advertiser: {{ad[0].user}}</ion-card-subtitle>
+                  <ion-text>{{ad[0].description}}</ion-text>
+                  <p>Posted on: {{ad[0].created_at * 1000 | date:'dd-MM-yyyy'}}</p>
+                  <p style="text-decoration: line-through;">On stock: {{ad[0].quantity}}</p>
+                  <ion-text *ngIf="ad[0].quantity>0" color="primary"><b>Price: </b>{{ad[0].price}} $</ion-text>
+                  <ion-text *ngIf="ad[0].quantity==0" color="danger"><b>Price: </b>{{ad[0].price}} $</ion-text>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+              <ion-card>
+                <ion-card-header>
+                    <ion-card-title>Add to cart</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item>
+                      <ion-label fixed>Quantity: </ion-label>
+                      <ion-input type="number" value="" min="1" max="{{ad[0].quantity}}" [(ngModel)]="quantity"></ion-input>
+                    </ion-item>
+                    <ion-button *ngIf="ad[0].quantity>0" expand="block" (click)="order()">Order</ion-button>
+                    <ion-button *ngIf="ad[0].quantity==0" expand="block" color="medium" disabled>Out of Stock!</ion-button>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
 </ion-content>

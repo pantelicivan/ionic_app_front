@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-splash-screen',
@@ -12,27 +13,36 @@ export class SplashScreenPage implements OnInit {
   ads = [];
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
   
   ngOnInit() {
-  }
-
-  ionViewWillEnter() {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       })
     };
+  }
 
+  ionViewWillEnter() {
     this.http.get('http://mobilno.develop/api/v1/ad', this.httpOptions)
         .subscribe( response => {
           console.log(response);
           this.ads = response['ads'];
         }, error => {
           console.log(error);
-        });
+    });
+  }
+
+  details(event) {
+    var target = event.target || event.srcElement || event.currentTarget;
+    var idAttr = target.attributes.id;
+    var value = idAttr.nodeValue;
+    
+    localStorage.setItem('ad', value);
+    this.router.navigate(['/ad-details']);
   }
 
 }
