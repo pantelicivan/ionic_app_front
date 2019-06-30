@@ -26,11 +26,11 @@
       <ion-label position="floating">Quantity</ion-label>
       <ion-input type="text" [(ngModel)]="quantity"></ion-input>
     </ion-item>
+    <ion-item>
+        <input type="file" name="uploadfile" id="img" style="display:none;" (change)="fileChanged($event)" />
+        <label for="img">Click me to upload image</label>
+    </ion-item>
   </ion-list>
-  <div>
-    <input type="file" name="uploadfile" id="img" style="display:none;" (change)="fileChanged($event)" />
-    <label for="img">Click me to upload image</label>
-  </div>
 
   <ion-button expand="block" (click)="create()">Create</ion-button>
 </ion-content>

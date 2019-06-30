@@ -53,7 +53,6 @@ export class AddAdPage implements OnInit {
     });
   }
 
-  // ADD PHOTO
   fileChanged(event) {
     const files = event.target.files
     const data = new FormData()

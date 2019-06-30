@@ -19,6 +19,7 @@ export class RegisterPage implements OnInit {
   email: string = ""
   password: string = ""
   mobile_phone: string = ""
+  img_url: string = ""
   ngOnInit() {
   }
 
@@ -29,11 +30,26 @@ export class RegisterPage implements OnInit {
       name: name,
       email: email,
       password: password,
-      mobile_phone: mobile_phone
+      mobile_phone: mobile_phone,
+      img_url: this.img_url
     }).subscribe(response => {
       this.alertManager.showAlert("Success!", response['message'], "login")
     }, error => {
       this.alertManager.showAlert("Error!", Object.values(error['error'])[0][0], "")
     });
+  }
+
+  fileChanged(event) {
+    const files = event.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('UPLOADCARE_STORE','1')
+    data.append('UPLOADCARE_PUB_KEY','c0c609f912b458fbadec')
+
+    this.http.post('https://upload.uploadcare.com/base/', data)
+      .subscribe(event => {
+        this.img_url = event['file']
+        this.alertManager.showAlert("Success!", "File uploaded succesfully", "");
+      })
   }
 }

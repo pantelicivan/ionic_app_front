@@ -12,6 +12,7 @@ export class MyProfilePage implements OnInit {
   name  = " "
   email = " "
   mobile_phone = " "
+  img_url;
   httpOptions;
 
   constructor(
@@ -32,6 +33,7 @@ export class MyProfilePage implements OnInit {
       this.name = response['user'].name
       this.email = response['user'].email
       this.mobile_phone = response['user'].mobile_phone
+      this.img_url = response['user'].img_url
     }, error => {
       this.alertManager.showAlert("Error!", error.statusText, "")
     })
