@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'splash-screen', loadChildren: './splash-screen/splash-screen.module#SplashScreenPageModule' },
   { path: 'my-cart', loadChildren: './my-cart/my-cart.module#MyCartPageModule' },  { path: 'finish-order', loadChildren: './finish-order/finish-order.module#FinishOrderPageModule' },
   { path: 'order-history', loadChildren: './order-history/order-history.module#OrderHistoryPageModule' },
+  { path: 'ad-details', loadChildren: './ad-details/ad-details.module#AdDetailsPageModule' },
 
 
 

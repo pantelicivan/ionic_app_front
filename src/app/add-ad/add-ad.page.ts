@@ -21,7 +21,7 @@ export class AddAdPage implements OnInit {
   description: string = ""
   price: number
   quantity: number
-  imageURL: string
+  img_url: string
 
   ngOnInit() {
     this.httpOptions = {
@@ -39,7 +39,8 @@ export class AddAdPage implements OnInit {
       title: title,
       description: description,
       price: price,
-      quantity: quantity
+      quantity: quantity,
+      img_url: this.img_url
     }, this.httpOptions).subscribe(response => {
       this.alertManager.showAlert("Success!", response['message'], 'tabs/splash-screen')
     }, error => {
@@ -58,13 +59,12 @@ export class AddAdPage implements OnInit {
     const data = new FormData()
     data.append('file', files[0])
     data.append('UPLOADCARE_STORE','1')
-    data.append('UPLOADCARE_PUB_KEY','176918ea032185f57c91')
+    data.append('UPLOADCARE_PUB_KEY','c0c609f912b458fbadec')
 
-    console.log(files)
     this.http.post('https://upload.uploadcare.com/base/', data)
       .subscribe(event => {
-        console.log(event)
-        this.imageURL = event['file']
+        this.img_url = event['file']
+        this.alertManager.showAlert("Success!", "File uploaded succesfully", "");
       })
   }
 
