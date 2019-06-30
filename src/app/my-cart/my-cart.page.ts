@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertManager } from '../helpers/alert';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,8 @@ export class MyCartPage implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private alertManager: AlertManager
+    private alertManager: AlertManager,
+    private router: Router
   ) { }
 
   httpOptions;
@@ -57,5 +59,15 @@ export class MyCartPage implements OnInit {
             this.alertManager.showAlert("Error!", error['error'].message, "")
           }
     });
+  }
+
+  finish_order() {
+
+    let total_amount = 0;
+    for(let order_item of this.order_items) {
+      total_amount += order_item.price * order_item.quantity;
+    }
+    localStorage.setItem('total_amount', total_amount+"");
+    this.router.navigate(['/finish-order']);
   }
 }
